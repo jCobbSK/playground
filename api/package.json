@@ -5,7 +5,9 @@
     "build": "npx ts-node build.ts",
     "lint": "npx eslint --ext .ts src/",
     "start": "node -r module-alias/register ./dist --env=production",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "format:check": "exit 0",
+    "lint:check": "exit 0"
   },
   "nodemonConfig": {
     "watch": [

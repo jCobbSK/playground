@@ -1,0 +1,18 @@
+{
+  "private": "true",
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "scripts": {
+    "format:check": "yarn workspaces run format:check",
+    "lint:check": "yarn workspaces run lint:check"
+  },
+  "pre-commit": [
+    "format:check",
+    "lint:check"
+  ],
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  }
+}
