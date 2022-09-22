@@ -7,7 +7,7 @@
     "start": "node -r module-alias/register ./dist --env=production",
     "dev": "nodemon",
     "format:check": "exit 0",
-    "lint:check": "exit 0"
+    "lint:check": "eslint ."
   },
   "nodemonConfig": {
     "watch": [
