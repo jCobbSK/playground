@@ -2,12 +2,11 @@
 
 ## Getting started
 
-### API server
-1. `cd api`
-2. `yarn`
-3. `yarn dev`
+### Prerequisites
+1. node 16.*
+2. yarn (`npm install -g yarn`)
 
-### APP
-1. `cd app`
-2. `yarn`
-3. `yarn dev`
+### Run the app and api
+1. yarn
+2. yarn dev
+3. app is running on `localhost:5173`
