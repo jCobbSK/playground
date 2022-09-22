@@ -4,7 +4,6 @@ import { Logo } from './Logo'
 
 const Wrapper = styled.div`
   width: 100vw;
-  height: 100vh;
   background-color: ${(props) => props.theme.darkest};
 `
 
@@ -12,6 +11,7 @@ const Header = styled.header`
   background-color: ${(props) => props.theme.darker};
   height: 75px;
   position: sticky;
+  top: 0;
 `
 
 const Container = styled.div`

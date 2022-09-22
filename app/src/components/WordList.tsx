@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useWords } from '../hooks/useWords'
+import { LoaderOverlay } from './LoaderOverlay'
 import { WordItem } from './WordItem'
 
 const Wrapper = styled.main`
@@ -7,11 +9,18 @@ const Wrapper = styled.main`
   margin: 1.5rem 0;
 `
 
-export const WordList: React.FC = () => (
-  <Wrapper>
-    <WordItem word={{ id: '123', word: 'dudu' }} />
-    <WordItem word={{ id: '123', word: 'dudu' }} />
-    <WordItem word={{ id: '123', word: 'dudu' }} />
-    <WordItem word={{ id: '123', word: 'dudu' }} />
-  </Wrapper>
-)
+export const WordList: React.FC = () => {
+  const { isLoading, words } = useWords()
+
+  if (isLoading) {
+    return <LoaderOverlay />
+  }
+
+  return (
+    <Wrapper>
+      {words.map((w) => (
+        <WordItem key={w.id} word={w} />
+      ))}
+    </Wrapper>
+  )
+}

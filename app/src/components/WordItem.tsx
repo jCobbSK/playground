@@ -20,6 +20,12 @@ const Container = styled.div`
 const LineNumber = styled.span`
   color: ${(props) => props.theme.textMuted};
   margin: 0 1.5rem;
+  width: 5rem;
+  text-align: right;
+`
+
+const Flex = styled.div`
+  display: flex;
 `
 
 interface Props {
@@ -28,9 +34,9 @@ interface Props {
 
 export const WordItem: React.FC<Props> = ({ word }) => (
   <Container>
-    <div>
+    <Flex>
       <LineNumber className="line-number">{word.id}</LineNumber>
       <span>{word.word}</span>
-    </div>
+    </Flex>
   </Container>
 )
