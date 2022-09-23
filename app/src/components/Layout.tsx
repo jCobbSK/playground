@@ -29,14 +29,15 @@ const FullHeightContainer = styled(Container)`
 
 interface Props {
   children: React.ReactNode
+  menu: React.ReactNode
 }
 
-export const Layout: React.FC<Props> = ({ children }) => (
+export const Layout: React.FC<Props> = ({ menu, children }) => (
   <Wrapper>
     <Header>
       <FullHeightContainer>
         <Logo />
-        <div>+</div>
+        {menu}
       </FullHeightContainer>
     </Header>
     <Container>{children}</Container>

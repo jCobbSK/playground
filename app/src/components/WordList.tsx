@@ -18,8 +18,8 @@ export const WordList: React.FC = () => {
 
   return (
     <Wrapper>
-      {words.map((w) => (
-        <WordItem key={w.id} word={w} />
+      {words.map((w, i) => (
+        <WordItem key={w.id} word={w} lineNr={i + 1} />
       ))}
     </Wrapper>
   )

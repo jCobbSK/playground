@@ -49,12 +49,17 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
     setWords((oldWords) => oldWords.filter(({ id }) => word.id !== id))
   }, [])
 
+  const addWord = useCallback((word: string) => {
+    setWords((oldWords) => [{ id: `${Math.random()}`, word }, ...oldWords])
+  }, [])
+
   const contextValue = useMemo(
     () => ({
       ...INITIAL_CONTEXT,
       words,
       isLoading,
       removeWord,
+      addWord,
     }),
     [INITIAL_CONTEXT, words, isLoading, removeWord]
   )

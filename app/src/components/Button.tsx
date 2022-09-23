@@ -15,4 +15,10 @@ export const Button = styled.button<ButtonProps>`
     }
     return props.theme.primary
   }};
+  font-size: ${(props) => {
+    if (props.size === 'lg') {
+      return '1.5rem'
+    }
+    return '14px'
+  }};
 `

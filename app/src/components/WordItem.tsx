@@ -54,14 +54,15 @@ const DeleteAnimationOverlay = styled.div`
   top: 0;
   height: 100%;
   background-color: ${(props) => props.theme.danger};
-  animation: ${fill} 1s ease-in-out;
+  animation: ${fill} 0.5s ease-in-out;
 `
 
 interface Props {
   word: Word
+  lineNr: number
 }
 
-export const WordItem: React.FC<Props> = ({ word }) => {
+export const WordItem: React.FC<Props> = ({ word, lineNr }) => {
   const { removeWord } = useWords()
   const [isDeleting, setIsDeleting] = useState(false)
 
@@ -69,12 +70,12 @@ export const WordItem: React.FC<Props> = ({ word }) => {
     setIsDeleting(true)
     setTimeout(() => {
       removeWord(word)
-    }, 1000)
+    }, 500)
   }
   return (
     <Container>
       <Flex>
-        <LineNumber>{word.id}</LineNumber>
+        <LineNumber>{lineNr}</LineNumber>
         <span>{word.word}</span>
       </Flex>
       <DeleteButton variant="danger" size="md" onClick={handleDelete}>
