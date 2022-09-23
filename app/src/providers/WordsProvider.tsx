@@ -42,7 +42,9 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
         throw new Error('Could not fetch words, is the API running?')
       })
 
-    return () => abortController.current?.abort()
+    return () => {
+      abortController.current?.abort()
+    }
   }, [])
 
   const removeWord = useCallback((word: Word) => {
