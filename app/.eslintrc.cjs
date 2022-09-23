@@ -17,6 +17,9 @@ module.exports = {
     ],
     'import/prefer-default-export': 0,
     'import/no-default-export': 2,
+    'react/jsx-props-no-spreading': 0,
+    '@typescript-eslint/no-explicit-any': 2,
+    'react/require-default-props': 0,
   },
   ignorePatterns: ['*.cjs'],
 }

@@ -5,6 +5,7 @@ interface WordsCtx {
   isLoading: boolean
   addWord(newWord: string): void
   removeWord(word: Word): void
+  moveWord(oldPositionIndex: number, newPositionIndex: number): void
 }
 
 interface WordsPayload {
@@ -17,6 +18,7 @@ const INITIAL_CONTEXT = {
   isLoading: true,
   addWord: () => {},
   removeWord: () => {},
+  moveWord: () => {},
 }
 
 export const WordsContext = React.createContext<WordsCtx>(INITIAL_CONTEXT)
@@ -55,6 +57,15 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
     setWords((oldWords) => [{ id: `${Math.random()}`, word }, ...oldWords])
   }, [])
 
+  const moveWord = useCallback((startPosition: number, newPosition: number) => {
+    setWords((oldWords) => {
+      const result = Array.from(oldWords)
+      const [removed] = result.splice(startPosition, 1)
+      result.splice(newPosition, 0, removed)
+      return result
+    })
+  }, [])
+
   const contextValue = useMemo(
     () => ({
       ...INITIAL_CONTEXT,
@@ -62,6 +73,7 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
       isLoading,
       removeWord,
       addWord,
+      moveWord,
     }),
     [INITIAL_CONTEXT, words, isLoading, removeWord]
   )
