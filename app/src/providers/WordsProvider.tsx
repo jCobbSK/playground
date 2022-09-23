@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 interface WordsCtx {
   words: Word[]
@@ -45,13 +45,18 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
     return () => abortController.current?.abort()
   }, [])
 
+  const removeWord = useCallback((word: Word) => {
+    setWords((oldWords) => oldWords.filter(({ id }) => word.id !== id))
+  }, [])
+
   const contextValue = useMemo(
     () => ({
       ...INITIAL_CONTEXT,
       words,
       isLoading,
+      removeWord,
     }),
-    [INITIAL_CONTEXT, words, isLoading]
+    [INITIAL_CONTEXT, words, isLoading, removeWord]
   )
 
   return (

@@ -5,4 +5,5 @@ export const theme = {
   primary: '#007FD4',
   text: '#CCCCCC',
   textMuted: '#7C7C7C',
+  danger: '#F14C4C',
 }
