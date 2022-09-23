@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { randomUUID } from "crypto";
 
-const WORD_COUNT = 100;
+const WORD_COUNT = 10000;
 
 /*
 We deliberatelly store this in memory, it will remain the same until server is restarted.

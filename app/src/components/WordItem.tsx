@@ -60,9 +60,10 @@ const DeleteAnimationOverlay = styled.div`
 interface Props {
   word: Word
   lineNr: number
+  style: any
 }
 
-export const WordItem: React.FC<Props> = ({ word, lineNr }) => {
+export const WordItem: React.FC<Props> = ({ word, lineNr, style }) => {
   const { removeWord } = useWords()
   const [isDeleting, setIsDeleting] = useState(false)
 
@@ -73,7 +74,7 @@ export const WordItem: React.FC<Props> = ({ word, lineNr }) => {
     }, 500)
   }
   return (
-    <Container>
+    <Container style={style}>
       <Flex>
         <LineNumber>{lineNr}</LineNumber>
         <span>{word.word}</span>
