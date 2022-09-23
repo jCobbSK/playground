@@ -32,7 +32,7 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     abortController.current = new AbortController()
-    fetch(`http://localhost:8001/api/words`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/words`, {
       signal: abortController.current.signal,
     })
       .then<WordsPayload>((response) => response.json())
