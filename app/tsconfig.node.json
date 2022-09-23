@@ -5,5 +5,10 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["vite.config.ts", "cypress.config.ts", "./cypress"]
+  "include": [
+    "vite.config.ts",
+    "cypress.config.ts",
+    "./cypress",
+    "setup-tests.ts"
+  ]
 }

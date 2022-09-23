@@ -1,8 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
+import * as WordStorageService from '../services/WordStorageService'
+
 interface WordsCtx {
   words: Word[]
   isLoading: boolean
+  hasFailed: boolean
   addWord(newWord: string): void
   removeWord(word: Word): void
   moveWord(oldPositionIndex: number, newPositionIndex: number): void
@@ -16,6 +19,7 @@ interface WordsPayload {
 const INITIAL_CONTEXT = {
   words: [],
   isLoading: true,
+  hasFailed: false,
   addWord: () => {},
   removeWord: () => {},
   moveWord: () => {},
@@ -27,7 +31,9 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [words, setWords] = useState<Word[]>([])
+  const [version, setVersion] = useState('')
   const [isLoading, setLoading] = useState(true)
+  const [hasFailed, setFailed] = useState(false)
   const abortController = useRef<AbortController>()
 
   useEffect(() => {
@@ -37,11 +43,14 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
     })
       .then<WordsPayload>((response) => response.json())
       .then((data) => {
-        setWords(data.data)
+        setVersion(data.version)
+        setWords(
+          WordStorageService.getDisplayableWords(data.data, data.version)
+        )
         setLoading(false)
       })
       .catch(() => {
-        throw new Error('Could not fetch words, is the API running?')
+        setFailed(true)
       })
 
     return () => {
@@ -49,33 +58,48 @@ export const WordsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [])
 
-  const removeWord = useCallback((word: Word) => {
-    setWords((oldWords) => oldWords.filter(({ id }) => word.id !== id))
-  }, [])
+  const removeWord = useCallback(
+    (word: Word) => {
+      setWords((oldWords) =>
+        WordStorageService.removeWord({ words: oldWords, version }, word)
+      )
+    },
+    [version]
+  )
 
-  const addWord = useCallback((word: string) => {
-    setWords((oldWords) => [{ id: `${Math.random()}`, word }, ...oldWords])
-  }, [])
+  const addWord = useCallback(
+    (word: string) => {
+      setWords((oldWords) =>
+        WordStorageService.addWord({ words: oldWords, version }, word)
+      )
+    },
+    [version]
+  )
 
-  const moveWord = useCallback((startPosition: number, newPosition: number) => {
-    setWords((oldWords) => {
-      const result = Array.from(oldWords)
-      const [removed] = result.splice(startPosition, 1)
-      result.splice(newPosition, 0, removed)
-      return result
-    })
-  }, [])
+  const moveWord = useCallback(
+    (startPosition: number, newPosition: number) => {
+      setWords((oldWords) =>
+        WordStorageService.moveWord(
+          { words: oldWords, version },
+          startPosition,
+          newPosition
+        )
+      )
+    },
+    [version]
+  )
 
   const contextValue = useMemo(
     () => ({
       ...INITIAL_CONTEXT,
       words,
       isLoading,
+      hasFailed,
       removeWord,
       addWord,
       moveWord,
     }),
-    [INITIAL_CONTEXT, words, isLoading, removeWord]
+    [INITIAL_CONTEXT, words, isLoading, removeWord, moveWord, hasFailed]
   )
 
   return (

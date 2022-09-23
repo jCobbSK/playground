@@ -15,7 +15,10 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-export const LoaderOverlay: React.FC = () => {
+export const LoaderOverlay: React.FC<{
+  isLoading: boolean
+  hasFailed: boolean
+}> = ({ isLoading, hasFailed }) => {
   const [tickCount, setTickCount] = useState(0)
   const intervalRef = useRef<NodeJS.Timer>()
   useEffect(() => {
@@ -28,6 +31,18 @@ export const LoaderOverlay: React.FC = () => {
     }
   })
 
+  if (hasFailed) {
+    return (
+      <Wrapper data-cy="failed-prompt">
+        API request failed. Is your server running?
+      </Wrapper>
+    )
+  }
+
+  if (!isLoading) {
+    return null
+  }
+
   const loadingContent = ''.padEnd((tickCount % MAX_NUMBER_OF_DOTS) + 1, '.')
-  return <Wrapper>Loading{loadingContent}</Wrapper>
+  return <Wrapper data-cy="loader">Loading{loadingContent}</Wrapper>
 }

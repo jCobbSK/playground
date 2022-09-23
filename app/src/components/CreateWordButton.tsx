@@ -94,7 +94,12 @@ export const CreateWordButton: React.FC = () => {
           onKeyUp={handleKeyUp}
         />
       )}
-      <Button size="lg" variant="primary" onClick={handleAddClick}>
+      <Button
+        size="lg"
+        variant="primary"
+        onClick={handleAddClick}
+        data-cy="add-word-button"
+      >
         +
       </Button>
     </Wrapper>

@@ -54,7 +54,7 @@ const DraggableWordItem: React.FC<{
 }
 
 export const WordList: React.FC = () => {
-  const { isLoading, words, moveWord } = useWords()
+  const { isLoading, hasFailed, words, moveWord } = useWords()
   const [height, setHeight] = useState(200)
   const wrapperRef = useRef<HTMLElement>(null)
   const resizeListener = useCallback(() => {
@@ -83,8 +83,8 @@ export const WordList: React.FC = () => {
     }
   })
 
-  if (isLoading) {
-    return <LoaderOverlay />
+  if (isLoading || hasFailed) {
+    return <LoaderOverlay isLoading={isLoading} hasFailed={hasFailed} />
   }
 
   return (

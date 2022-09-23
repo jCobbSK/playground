@@ -2,12 +2,13 @@ import React from 'react'
 import { describe, expect, it } from 'vitest'
 import { screen, render } from '@testing-library/react'
 
-import App from '../App'
+import { App } from '../App'
 
-describe('Main component', () => {
-  it('renders <App />', () => {
+describe('Main <App /> component', () => {
+  it('renders Add button and loader', () => {
     render(<App />)
 
-    expect(screen.getByText('count is 0')).toBeDefined()
+    expect(screen.getByTestId('add-word-button')).toBeDefined()
+    expect(screen.getByTestId('loader')).toBeDefined()
   })
 })
