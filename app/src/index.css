@@ -21,3 +21,15 @@ body {
   min-width: 320px;
   overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid #3c3c3c;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4f4f4f;
+}
