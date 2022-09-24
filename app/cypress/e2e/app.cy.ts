@@ -56,5 +56,11 @@ describe('App flow', () => {
     cy.get('[data-cy^=word-item-]').first().should('contain', 'Second')
 
     // move
+    cy.dragAndDrop(
+      '[data-cy^=word-item-]:last',
+      '[data-cy^=word-item-]:first'
+    ).wait(1000) // wait for re-order
+
+    cy.get('[data-cy^=word-item-]').first().should('contain', 'First')
   })
 })

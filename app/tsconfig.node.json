@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["cypress"],
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
