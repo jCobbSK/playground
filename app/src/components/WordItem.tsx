@@ -78,7 +78,12 @@ export const WordItem: React.FC<Props> = ({ word, lineNr }) => {
         <LineNumber>{lineNr}</LineNumber>
         <span>{word.word}</span>
       </Flex>
-      <DeleteButton variant="danger" size="md" onClick={handleDelete}>
+      <DeleteButton
+        variant="danger"
+        size="md"
+        data-cy="word-delete-btn"
+        onClick={handleDelete}
+      >
         X
       </DeleteButton>
       {isDeleting && <DeleteAnimationOverlay />}

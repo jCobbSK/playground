@@ -87,6 +87,7 @@ export const CreateWordButton: React.FC = () => {
       {isInputVisible && (
         <AnimatedInput
           type="text"
+          data-cy="add-word-input"
           autoComplete="false"
           autoFocus
           value={word}
