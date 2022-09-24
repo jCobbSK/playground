@@ -69,7 +69,7 @@ export const CreateWordButton: React.FC = () => {
     setWord(ev.target.value)
   }
 
-  const handleKeyUp = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (ev: React.KeyboardEvent<HTMLInputElement>) => {
     if (ev.key === 'Enter') {
       handleAddClick()
       return
@@ -91,7 +91,7 @@ export const CreateWordButton: React.FC = () => {
           autoFocus
           value={word}
           onChange={handleInputChange}
-          onKeyUp={handleKeyUp}
+          onKeyDown={handleKeyDown}
         />
       )}
       <Button
