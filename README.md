@@ -12,10 +12,15 @@ API and APP is in single monorepo, I've used yarn workspaces for pre-commit hook
 2. `yarn dev`
 3. app is running on `localhost:5173` (api on `localhost:8001`)
 
+### Running tests
+1. `cd app && yarn run test:unit` for unit tests
+2. `cd app && yarn run test:e2e` for cypress tests
+
 ## Used tech
 
 - Official `vite` scaffold
-- `airbnb eslint` config and `prettier` for formatting
+    - As we don't have multiple routes and not content heavy (otherwise I would use Next.js / Astro)
+- `airbnb eslint` config and `prettier` for linting/formatting with small tweaks explained in the file
 - Testing with `vitest` and `cypress`
 - Styling with `styled-components`
 - Virtual scroll with `react-window`
