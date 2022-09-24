@@ -73,7 +73,7 @@ export const WordItem: React.FC<Props> = ({ word, lineNr }) => {
     }, 500)
   }
   return (
-    <Container>
+    <Container data-cy={`word-item-${word.id}`}>
       <Flex>
         <LineNumber>{lineNr}</LineNumber>
         <span>{word.word}</span>
