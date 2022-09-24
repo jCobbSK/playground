@@ -1,7 +1,7 @@
 # Surglogs interview project
 
 ## Getting started
-API and APP is in single monorepo, I've used yarn workspaces for pre-commit hook and single command boot but they can be run separately.
+API and APP is in single monorepo, I've used yarn workspaces for pre-commit hook and single start command but they can be run separately.
 
 ### Prerequisites
 1. node 16.*

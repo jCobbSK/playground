@@ -1,8 +1,4 @@
 describe('App flow', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:5173')
-  })
-
   it('shows page with loaded words', () => {
     cy.intercept('http://localhost:8001/api/words', {
       body: {
@@ -14,6 +10,8 @@ describe('App flow', () => {
         ],
       },
     }).as('words')
+
+    cy.visit('http://localhost:5173')
 
     cy.wait('@words')
     cy.get('[data-cy=word-item-1]')
@@ -32,6 +30,8 @@ describe('App flow', () => {
         ],
       },
     }).as('words')
+
+    cy.visit('http://localhost:5173')
 
     cy.wait('@words')
 
