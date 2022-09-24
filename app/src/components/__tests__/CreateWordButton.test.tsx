@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
+import { act } from 'react-dom/test-utils'
 import { describe, it, expect, vi } from 'vitest'
 
 import * as useWords from '../../hooks/useWords'
@@ -22,13 +23,17 @@ describe('<CreateWordButton />', () => {
   it('renders text input after the click and closes with escape', async () => {
     render(<CreateWordButton />)
 
-    fireEvent.click(screen.getByTestId('add-word-button'))
+    act(() => {
+      fireEvent.click(screen.getByTestId('add-word-button'))
+    })
 
     expect(screen.getByTestId('add-word-button')).toBeDefined()
     expect(await screen.findByTestId('add-word-input')).toBeDefined()
 
-    fireEvent.keyDown(document.activeElement || document.body, {
-      key: 'Escape',
+    act(() => {
+      fireEvent.keyDown(document.activeElement || document.body, {
+        key: 'Escape',
+      })
     })
 
     // we need to flush animation

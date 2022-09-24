@@ -14,7 +14,7 @@ API and APP is in single monorepo, I've used yarn workspaces for pre-commit hook
 
 ### Running tests
 1. `cd app && yarn run test:unit` for unit tests
-2. `cd app && yarn run test:e2e` for cypress tests
+2. `cd app && yarn run test:e2e` for cypress tests (please make sure the app is running)
 
 Main use-cases are covered by cypress, unit tests are used only for small cases (e.g. loading state, failed state ...)
 
