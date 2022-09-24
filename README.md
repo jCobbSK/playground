@@ -16,6 +16,8 @@ API and APP is in single monorepo, I've used yarn workspaces for pre-commit hook
 1. `cd app && yarn run test:unit` for unit tests
 2. `cd app && yarn run test:e2e` for cypress tests
 
+Main use-cases are covered by cypress, unit tests are used only for small cases (e.g. loading state, failed state ...)
+
 ## Used tech
 
 - Official `vite` scaffold
@@ -26,3 +28,4 @@ API and APP is in single monorepo, I've used yarn workspaces for pre-commit hook
 - Virtual scroll with `react-window`
 - Drag and drop with `react-beautiful-dnd`
 - For API only simple `express` with typescript
+
